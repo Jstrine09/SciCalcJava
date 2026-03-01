@@ -30,10 +30,22 @@ public class TestMainApplication {
         return sum;
     }
 
+    public static int subtract(int a, int b) {
+        int difference = a - b;
+        System.out.println(difference);
+        return difference;
+    }
+
     public static int multiply(int a, int b) {
         int product = a * b;
         System.out.println(product);
         return product;
+    }
+
+    public static int divide(int a, int b) {
+        int quotient = a / b;
+        System.out.println(quotient);
+        return quotient;
     }
 
 }

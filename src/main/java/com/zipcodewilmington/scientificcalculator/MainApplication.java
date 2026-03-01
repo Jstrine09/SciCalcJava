@@ -58,12 +58,28 @@ public class MainApplication {
     // }
 
     public static void main(String[] args) {
+        boolean isRunning = true;
+
         String prompt = "Enter an operator (+, -, *, /): ";
         String operatorInput = Console.getStringInput(prompt);
         Integer num1Input = Console.getIntegerInput("Enter the first number: ");
         Integer num2Input = Console.getIntegerInput("Enter the second number: ");
+        
         int result = calculate(num1Input, num2Input, operatorInput);
         Console.println("Result: %d", result);
+
+        while (isRunning) {
+        String again = Console.getStringInput("Use result in new equation? (yes/no): ");
         
+        if (again.equalsIgnoreCase("no")) {
+            isRunning = false;
+        } else {
+            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /): ");
+            Integer newNum = Console.getIntegerInput("Enter a number: ");
+            result = calculate(result, newNum, newOperator);
+            Console.println("Result: %d", result);
+        }
     }
+    Console.println("Thank you for using the calculator!");
+}
 }
