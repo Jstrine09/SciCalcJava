@@ -69,6 +69,24 @@ public class Console {
         return result;
     }
 
+    public static double sine(double a) {
+        double result = Math.sin(a);
+        System.out.println(result);
+        return result;
+    }
+
+    public static double cosine(double a) {
+        double result = Math.cos(a);
+        System.out.println(result);
+        return result;
+    }
+
+    public static double tangent(double a) {
+        double result = Math.tan(a);
+        System.out.println(result);
+        return result;
+    }
+
 
 
     public static void print(String output, Object... args) {

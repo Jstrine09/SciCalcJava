@@ -40,6 +40,15 @@ public class MainApplication {
             case "exp":
                 result = (double) Console.exponent(a, b);
                 break;
+            case "sin":
+                result = (double) Console.sine(a);
+                break;
+            case "cos":
+                result = (double) Console.cosine(a);
+                break;
+            case "tan":
+                result = (double) Console.tangent(a);
+                break;
             default:
                 System.out.println("Invalid operator");
         }
@@ -51,9 +60,9 @@ public class MainApplication {
         boolean isRunning = true;
         double result = 0.0;
 
-        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp): ";
+        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan): ";
         String operatorInput = Console.getStringInput(prompt);
-        if (operatorInput.equals("sqrt") || operatorInput.equals("sqr") || operatorInput.equals("inv") || operatorInput.equals("neg") || operatorInput.equals("log")) {
+        if (operatorInput.equals("sqrt") || operatorInput.equals("sqr") || operatorInput.equals("inv") || operatorInput.equals("neg") || operatorInput.equals("log") || operatorInput.equals("exp") || operatorInput.equals("sin") || operatorInput.equals("cos") || operatorInput.equals("tan")) {
             Double numInput = Console.getDoubleInput("Enter a number: ");
             result = calculate(numInput, 0, operatorInput);
             Console.println("Result: %f", result);
@@ -71,9 +80,9 @@ public class MainApplication {
         if (again.equalsIgnoreCase("no")) {
             isRunning = false;
         } else {
-            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp): ");
+            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan): ");
 
-            if (newOperator.equals("sqrt") || newOperator.equals("sqr") || newOperator.equals("inv") || newOperator.equals("neg") || newOperator.equals("log")) {
+            if (newOperator.equals("sqrt") || newOperator.equals("sqr") || newOperator.equals("inv") || newOperator.equals("neg") || newOperator.equals("log") || newOperator.equals("exp") || newOperator.equals("sin") || newOperator.equals("cos") || newOperator.equals("tan")) {
                 result = calculate(result, 0, newOperator);
             } else {
                 Double newNum = Console.getDoubleInput("Enter a number: ");
