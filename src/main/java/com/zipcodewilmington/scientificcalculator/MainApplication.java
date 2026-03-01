@@ -1,10 +1,5 @@
 package com.zipcodewilmington.scientificcalculator;
 
-import java.lang.reflect.Array;
-import java.util.Scanner;
-
-import utils.Prompt;
-
 /**
  * Created by leon on 2/9/18.
  */
