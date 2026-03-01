@@ -28,6 +28,15 @@ public class MainApplication {
             case "sqr":
                 result = (double) Console.square(a);
                 break;
+            case "inv":
+                result = (double) Console.inverse(a);
+                break;
+            case "neg":
+                result = (double) Console.invert(a);
+                break;
+            case "log":
+                result = (double) Console.logarithm(a);
+                break;
             default:
                 System.out.println("Invalid operator");
         }
@@ -39,9 +48,9 @@ public class MainApplication {
         boolean isRunning = true;
         double result = 0.0;
 
-        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr): ";
+        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log): ";
         String operatorInput = Console.getStringInput(prompt);
-        if (operatorInput.equals("sqrt") || operatorInput.equals("sqr")) {
+        if (operatorInput.equals("sqrt") || operatorInput.equals("sqr") || operatorInput.equals("inv") || operatorInput.equals("neg") || operatorInput.equals("log")) {
             Double numInput = Console.getDoubleInput("Enter a number: ");
             result = calculate(numInput, 0, operatorInput);
             Console.println("Result: %f", result);
@@ -59,9 +68,9 @@ public class MainApplication {
         if (again.equalsIgnoreCase("no")) {
             isRunning = false;
         } else {
-            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr): ");
+            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log): ");
 
-            if (newOperator.equals("sqrt") || newOperator.equals("sqr")) {
+            if (newOperator.equals("sqrt") || newOperator.equals("sqr") || newOperator.equals("inv") || newOperator.equals("neg") || newOperator.equals("log")) {
                 result = calculate(result, 0, newOperator);
             } else {
                 Double newNum = Console.getDoubleInput("Enter a number: ");

@@ -57,6 +57,18 @@ public class Console {
         return result;
     }
 
+    public static double logarithm(double a) {
+        double result = Math.log(a);
+        System.out.println(result);
+        return result;
+    }
+
+    public static double exponent(double a, double b) {
+        double result = Math.pow(a, b);
+        System.out.println(result);
+        return result;
+    }
+
 
 
     public static void print(String output, Object... args) {
