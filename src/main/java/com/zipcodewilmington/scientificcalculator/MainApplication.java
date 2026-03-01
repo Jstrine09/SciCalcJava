@@ -7,8 +7,8 @@ package com.zipcodewilmington.scientificcalculator;
 
 public class MainApplication {
     
-    public static int calculate(int a, int b, String operator) {
-        int result = 5;
+    public static double  calculate(double a, double b, String operator) {
+        double result = 0;
         switch (operator) {
             case "+":
                 result = Console.add(a, b);
@@ -22,48 +22,72 @@ public class MainApplication {
             case "/":
                 result = Console.divide(a, b);
                 break;
+            case "sqrt":
+                result = (double) Console.squareRoot(a);
+                break;
+            case "sqr":
+                result = (double) Console.square(a);
+                break;
+            case "inv":
+                result = (double) Console.inverse(a);
+                break;
+            case "neg":
+                result = (double) Console.invert(a);
+                break;
+            case "log":
+                result = (double) Console.logarithm(a);
+                break;
+            case "exp":
+                result = (double) Console.exponent(a, b);
+                break;
             default:
                 System.out.println("Invalid operator");
         }
         return result;
     }
 
-    
-    //     Console.println("");
-    //     String s = Console.getStringInput("Enter a string");
-    //     Integer i = Console.getIntegerInput("Enter an integer");
-    //     Double d = Console.getDoubleInput("Enter a double");
-    // }
-    
-    
-    // public static void main(String[] args, Object userInput, Object prompt, String operator) {
-        
-    //     if (userInput instanceof String) {
-    //         System.out.println();
-    //         String userInputStr = Console.getStringInput(prompt);
-    //         Console.println(userInputStr);
-    //     } else if (userInput instanceof Integer) {
-    //         System.out.println();
-    //         Integer userInputInt = Console.getIntegerInput(prompt);
-    //         Console.println(userInputInt);
-    //     } else if (userInput instanceof Double) {
-    //         System.out.println();
-    //         Double userInputDbl = Console.getDoubleInput(prompt);
-    //         Console.println(userInputDbl);
-    //     }
-    //     else {
-    //         System.out.println("Invalid input type");
-    //     }
-    //     System.out.println(prompt);
-    // }
 
     public static void main(String[] args) {
-        String prompt = "Enter an operator (+, -, *, /): ";
+        boolean isRunning = true;
+        double result = 0.0;
+
+        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp): ";
         String operatorInput = Console.getStringInput(prompt);
-        Integer num1Input = Console.getIntegerInput("Enter the first number: ");
-        Integer num2Input = Console.getIntegerInput("Enter the second number: ");
-        int result = calculate(num1Input, num2Input, operatorInput);
-        Console.println("Result: %d", result);
+        if (operatorInput.equals("sqrt") || operatorInput.equals("sqr") || operatorInput.equals("inv") || operatorInput.equals("neg") || operatorInput.equals("log")) {
+            Double numInput = Console.getDoubleInput("Enter a number: ");
+            result = calculate(numInput, 0, operatorInput);
+            Console.println("Result: %f", result);
+        } else {
+            
+        Double num1Input = Console.getDoubleInput("Enter the first number: ");
+        Double num2Input = Console.getDoubleInput("Enter the second number: ");
+        result = calculate(num1Input, num2Input, operatorInput);
+        Console.println("Result: %f", result);
+        }
+
+        while (isRunning) {
+        String again = Console.getStringInput("Use result in new equation? (yes/no): ");
         
+        if (again.equalsIgnoreCase("no")) {
+            isRunning = false;
+        } else {
+            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp): ");
+
+            if (newOperator.equals("sqrt") || newOperator.equals("sqr") || newOperator.equals("inv") || newOperator.equals("neg") || newOperator.equals("log")) {
+                result = calculate(result, 0, newOperator);
+            } else {
+                Double newNum = Console.getDoubleInput("Enter a number: ");
+                result = calculate(result, newNum, newOperator);
+            }
+            Console.println("Result: %f", result);
+        }
+        }
+        Console.println("Thank you for using the calculator!");
     }
 }
+
+
+//             String newOperator = Console.getStringInput("Enter an operator (+, -, *, /): ");
+//             Double newNum = Console.getDoubleInput("Enter a number: ");
+//             double newResult = calculate(result, newNum, newOperator);
+//             result = newResult;
