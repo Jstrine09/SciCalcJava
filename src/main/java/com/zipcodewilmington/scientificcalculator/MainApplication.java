@@ -37,6 +37,9 @@ public class MainApplication {
             case "log":
                 result = (double) Console.logarithm(a);
                 break;
+            case "exp":
+                result = (double) Console.exponent(a, b);
+                break;
             default:
                 System.out.println("Invalid operator");
         }
@@ -48,7 +51,7 @@ public class MainApplication {
         boolean isRunning = true;
         double result = 0.0;
 
-        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log): ";
+        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp): ";
         String operatorInput = Console.getStringInput(prompt);
         if (operatorInput.equals("sqrt") || operatorInput.equals("sqr") || operatorInput.equals("inv") || operatorInput.equals("neg") || operatorInput.equals("log")) {
             Double numInput = Console.getDoubleInput("Enter a number: ");
@@ -68,7 +71,7 @@ public class MainApplication {
         if (again.equalsIgnoreCase("no")) {
             isRunning = false;
         } else {
-            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log): ");
+            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp): ");
 
             if (newOperator.equals("sqrt") || newOperator.equals("sqr") || newOperator.equals("inv") || newOperator.equals("neg") || newOperator.equals("log")) {
                 result = calculate(result, 0, newOperator);
