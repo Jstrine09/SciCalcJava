@@ -9,28 +9,52 @@ import java.util.Scanner;
 
 public class Console {
 
-    public static int add(int a, int b) {
-        int sum = a + b;
+    public static double add(double a, double b) {
+        double sum = a + b;
         System.out.println(sum);
         return sum;
     }
 
-    public static int subtract(int a, int b) {
-        int difference = a - b;
+    public static double subtract(double a, double b) {
+        double difference = a - b;
         System.out.println(difference);
         return difference;
     }
 
-    public static int multiply(int a, int b) {
-        int product = a * b;
+    public static double multiply(double a, double b) {
+        double product = a * b;
         System.out.println(product);
         return product;
     }
 
-    public static int divide(int a, int b) {
-        int quotient = a / b;
+    public static double divide(double a, double b) {
+        double quotient = a / b;
         System.out.println(quotient);
         return quotient;
+    }
+
+    public static double square(double a) {
+        double result = a * a;
+        System.out.println(result);
+        return result;
+    }
+
+    public static double squareRoot(double a) {
+        double result = Math.sqrt(a);
+        System.out.println(result);
+        return result;
+    }
+
+    public static double inverse(double a) {
+        double result = 1 / a;
+        System.out.println(result);
+        return result;
+    }
+
+    public static double invert(double a) {
+        double result = -a;
+        System.out.println(result);
+        return result;
     }
 
 
