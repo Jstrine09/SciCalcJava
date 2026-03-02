@@ -28,6 +28,10 @@ public class Console {
     }
 
     public static double divide(double a, double b) {
+        if (b == 0) {
+            throw new ArithmeticException("Err");
+        }
+
         double quotient = a / b;
         System.out.println(quotient);
         return quotient;
@@ -87,7 +91,23 @@ public class Console {
         return result;
     }
 
+    public static double inverseSine(double a) {
+        double result = Math.asin(a);
+        System.out.println(result);
+        return result;
+    }
 
+    public static double inverseCosine(double a) {
+        double result = Math.acos(a);
+        System.out.println(result);
+        return result;
+    }
+
+    public static double inverseTangent(double a) {
+        double result = Math.atan(a);
+        System.out.println(result);
+        return result;
+    }
 
     public static void print(String output, Object... args) {
         System.out.printf(output, args);

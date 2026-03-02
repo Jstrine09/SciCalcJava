@@ -49,6 +49,15 @@ public class MainApplication {
             case "tan":
                 result = (double) Console.tangent(a);
                 break;
+            case "asin":
+                result = (double) Console.inverseSine(a);
+                break;
+            case "acos":
+                result = (double) Console.inverseCosine(a);
+                break;
+            case "atan":
+                result = (double) Console.inverseTangent(a);
+                break;
             default:
                 System.out.println("Invalid operator");
         }
@@ -59,10 +68,11 @@ public class MainApplication {
     public static void main(String[] args) {
         boolean isRunning = true;
         double result = 0.0;
+        double memory = 0.0;
 
-        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan): ";
+        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan, mr, cv): ";
         String operatorInput = Console.getStringInput(prompt);
-        if (operatorInput.equals("sqrt") || operatorInput.equals("sqr") || operatorInput.equals("inv") || operatorInput.equals("neg") || operatorInput.equals("log") || operatorInput.equals("exp") || operatorInput.equals("sin") || operatorInput.equals("cos") || operatorInput.equals("tan")) {
+        if (operatorInput.equals("sqrt") || operatorInput.equals("sqr") || operatorInput.equals("inv") || operatorInput.equals("neg") || operatorInput.equals("log") || operatorInput.equals("sin") || operatorInput.equals("cos") || operatorInput.equals("tan")) {
             Double numInput = Console.getDoubleInput("Enter a number: ");
             result = calculate(numInput, 0, operatorInput);
             Console.println("Result: %f", result);
@@ -80,23 +90,31 @@ public class MainApplication {
         if (again.equalsIgnoreCase("no")) {
             isRunning = false;
         } else {
-            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan): ");
+            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan, mr, cv): ");
 
-            if (newOperator.equals("sqrt") || newOperator.equals("sqr") || newOperator.equals("inv") || newOperator.equals("neg") || newOperator.equals("log") || newOperator.equals("exp") || newOperator.equals("sin") || newOperator.equals("cos") || newOperator.equals("tan")) {
-                result = calculate(result, 0, newOperator);
-            } else {
-                Double newNum = Console.getDoubleInput("Enter a number: ");
-                result = calculate(result, newNum, newOperator);
+            if (newOperator.equals("mr")) {
+                result = memory;
+                Console.println("Memory Recall: %f", result);
+            } else if (newOperator.equals("cv")) {
+                Console.println("Memory recalled: %f", result);
+            } else if (newOperator.equals("mc")) {
+                memory = 0.0;
+                Console.println("Memory cleared.");
             }
-            Console.println("Result: %f", result);
+            else if (newOperator.equals("sqrt") || newOperator.equals("sqr") || newOperator.equals("inv") || newOperator.equals("neg") || newOperator.equals("log") || newOperator.equals("sin") || newOperator.equals("cos") || newOperator.equals("tan")) {
+                memory = result;
+                result = calculate(result, 0, newOperator);
+                Console.println("Result: %f", result);
+            }
+            else {
+                Double newNum = Console.getDoubleInput("Enter a number: ");
+                memory = result;
+                result = calculate(result, newNum, newOperator);
+                Console.println("Result: %f", result);
+            }
         }
         }
         Console.println("Thank you for using the calculator!");
     }
 }
 
-
-//             String newOperator = Console.getStringInput("Enter an operator (+, -, *, /): ");
-//             Double newNum = Console.getDoubleInput("Enter a number: ");
-//             double newResult = calculate(result, newNum, newOperator);
-//             result = newResult;
