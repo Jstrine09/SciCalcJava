@@ -44,6 +44,9 @@ public class Console {
     }
 
     public static double squareRoot(double a) {
+        if (a < 0) {
+            throw new ArithmeticException("Err");
+        }
         double result = Math.sqrt(a);
         System.out.println(result);
         return result;
@@ -62,6 +65,9 @@ public class Console {
     }
 
     public static double logarithm(double a) {
+        if (a <= 0) {
+            throw new ArithmeticException("Err");
+        }
         double result = Math.log(a);
         System.out.println(result);
         return result;

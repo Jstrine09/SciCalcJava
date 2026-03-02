@@ -69,19 +69,27 @@ public class MainApplication {
         boolean isRunning = true;
         double result = 0.0;
         double memory = 0.0;
+        double prevA = 0.0;
+        double prevB = 0.0;
+        String prevOperator = "";
 
-        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan, mr, cv): ";
+        String prompt = "Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan, mr, cv, mc): ";
         String operatorInput = Console.getStringInput(prompt);
         if (operatorInput.equals("sqrt") || operatorInput.equals("sqr") || operatorInput.equals("inv") || operatorInput.equals("neg") || operatorInput.equals("log") || operatorInput.equals("sin") || operatorInput.equals("cos") || operatorInput.equals("tan")) {
             Double numInput = Console.getDoubleInput("Enter a number: ");
+            prevA = numInput;
+            prevB = 0.0;
+            prevOperator = operatorInput;
             result = calculate(numInput, 0, operatorInput);
             Console.println("Result: %f", result);
         } else {
-            
-        Double num1Input = Console.getDoubleInput("Enter the first number: ");
-        Double num2Input = Console.getDoubleInput("Enter the second number: ");
-        result = calculate(num1Input, num2Input, operatorInput);
-        Console.println("Result: %f", result);
+            Double num1Input = Console.getDoubleInput("Enter the first number: ");
+            Double num2Input = Console.getDoubleInput("Enter the second number: ");
+            prevA = num1Input;
+            prevB = num2Input;
+            prevOperator = operatorInput;
+            result = calculate(num1Input, num2Input, operatorInput);
+            Console.println("Result: %f", result);
         }
 
         while (isRunning) {
@@ -90,25 +98,36 @@ public class MainApplication {
         if (again.equalsIgnoreCase("no")) {
             isRunning = false;
         } else {
-            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan, mr, cv): ");
+            String newOperator = Console.getStringInput("Enter an operator (+, -, *, /, sqrt, sqr, inv, neg, log, exp, sin, cos, tan, mr, cv, mc): ");
 
             if (newOperator.equals("mr")) {
                 result = memory;
                 Console.println("Memory Recall: %f", result);
             } else if (newOperator.equals("cv")) {
-                Console.println("Memory recalled: %f", result);
+                Console.println("Current Value: %f", result);
             } else if (newOperator.equals("mc")) {
                 memory = 0.0;
                 Console.println("Memory cleared.");
-            }
+            } else if (newOperator.equals("redo")) {
+                Double editNum = Console.getDoubleInput("Enter a new number: ");
+                memory = result;
+                result = calculate(prevA, editNum, prevOperator);
+                Console.println("Result: %f", result);
+            }            
             else if (newOperator.equals("sqrt") || newOperator.equals("sqr") || newOperator.equals("inv") || newOperator.equals("neg") || newOperator.equals("log") || newOperator.equals("sin") || newOperator.equals("cos") || newOperator.equals("tan")) {
                 memory = result;
+                prevA = result;
+                prevB = 0.0;
+                prevOperator = newOperator;
                 result = calculate(result, 0, newOperator);
                 Console.println("Result: %f", result);
             }
             else {
                 Double newNum = Console.getDoubleInput("Enter a number: ");
                 memory = result;
+                prevA = result;
+                prevB = newNum;
+                prevOperator = newOperator;
                 result = calculate(result, newNum, newOperator);
                 Console.println("Result: %f", result);
             }
