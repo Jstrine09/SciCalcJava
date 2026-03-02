@@ -133,7 +133,7 @@ public class MainApplication {
             }
         }
         }
-        Console.println("Thank you for using the calculator!");
+        Console.println("Thank you for using our calculator!");
     }
 }
 
